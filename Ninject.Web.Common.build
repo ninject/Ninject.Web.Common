@@ -29,23 +29,23 @@
 		</csc>
 	</target>
 	
-    <target name="csl" depends="init core">
+	<target name="csl" depends="init core">
 		<property name="current.path.build.extensions" value="${path.build}/${build.platform}/${build.config}/extensions"/>
 		<mkdir dir="${current.path.build.extensions}" if="${not(directory::exists(current.path.build.extensions))}"/>
 
-        <csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build.extensions}/Ninject.Extensions.Wcf.CommonServiceLocator.dll">
-            <arg line="/filealign:512" unless="${nant.settings.currentframework == 'mono-2.0'}"/>
-            <sources basedir="${path.src}">
-                <include name="${build.asminfo}"/>
-            </sources>
-            <references basedir="${current.path.build}">
+		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build.extensions}/Ninject.Extensions.Wcf.CommonServiceLocator.dll">
+			<arg line="/filealign:512" unless="${nant.settings.currentframework == 'mono-2.0'}"/>
+			<sources basedir="${path.src}">
+				<include name="${build.asminfo}"/>
+			</sources>
+			<references basedir="${current.path.build}">
 				<include name="mscorlib.dll"/>
 				<include name="System.dll"/>
 				<include name="System.Web.dll"/>
 				<include name="System.Core.dll"/>
-            </references>
-        </csc>
-    </target>	
+			</references>
+		</csc>
+	</target>
 
 	<target name="compile-tests" depends="core" unless="${skip.tests}" if="${not(string::contains(build.platform, 'silverlight') or build.platform == 'netcf-3.5')}">
 		<mkdir dir="${current.path.test}"/>
@@ -57,16 +57,21 @@
 		<copy todir="${current.path.test}">
 			<fileset basedir="${path.tools.xunit}">
 				<include name="xunit.dll"/>
-                <include name="xunit.should.dll"/>
+				<include name="xunit.should.dll"/>
 			</fileset>
 		</copy>
-		<copy todir="${current.path.test}">
-			<fileset basedir="${path.tools.moq}/net-3.5">
+		<copy todir="${current.path.test}" if="${not(string::contains(build.platform, 'net-4.0'))}">
+			<fileset basedir="${path.tools.moq}/net35">
+				<include name="Moq.dll"/>
+			</fileset>
+		</copy>
+		<copy todir="${current.path.test}" if="${string::contains(build.platform, 'net-4.0')}">
+			<fileset basedir="${path.tools.moq}/net40">
 				<include name="Moq.dll"/>
 			</fileset>
 		</copy>
 		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}"
-         output="${current.path.test}/${product.assembly.test}">
+		 output="${current.path.test}/${product.assembly.test}">
 			<sources basedir="${path.src}">
 				<include name="${product.name}.Test/**/*.cs"/>
 			</sources>
@@ -77,7 +82,7 @@
 				<include name="System.Core.dll"/>
 				<include name="Moq.dll"/>
 				<include name="xunit.dll"/>
-                <include name="xunit.should.dll"/>
+				<include name="xunit.should.dll"/>
 				<include name="${product.assembly}"/>
 				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
 			</references>
@@ -87,5 +92,5 @@
 		</csc>
 	</target>
 	
-    <target name="compile-silverlight-tests"/>
+	<target name="compile-silverlight-tests"/>
 </project>
