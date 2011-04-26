@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="HttpApplicationInitializationModule.cs" />
     <Compile Include="IBootstrapper.cs" />
     <Compile Include="INinjectHttpApplicationPlugin.cs" />
     <Compile Include="NinjectHttpApplication.cs" />

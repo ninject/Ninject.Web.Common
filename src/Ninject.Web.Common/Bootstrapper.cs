@@ -20,6 +20,7 @@
 namespace Ninject.Web.Common
 {
     using System;
+    using System.Web;
     using Ninject.Infrastructure.Language;
 
     /// <summary>
@@ -48,8 +49,17 @@ namespace Ninject.Web.Common
         {
             kernelInstance = createKernelCallback();
 
-            this.Kernel.Components.GetAll<INinjectHttpApplicationPlugin>().Map(c => c.Start());
-            this.Kernel.Inject(this);
+            kernelInstance.Components.GetAll<INinjectHttpApplicationPlugin>().Map(c => c.Start());
+            kernelInstance.Inject(this);
+        }
+
+        /// <summary>
+        /// Initializes a HttpApplication instance.
+        /// </summary>
+        /// <param name="httpApplication">The HttpApplication instance.</param>
+        public void InitializeHttpApplication(HttpApplication httpApplication)
+        {
+            kernelInstance.Inject(httpApplication);
         }
 
         /// <summary>
@@ -57,10 +67,10 @@ namespace Ninject.Web.Common
         /// </summary>
         public void ShutDown()
         {
-            if (this.Kernel != null)
+            if (kernelInstance != null)
             {
-                this.Kernel.Components.GetAll<INinjectHttpApplicationPlugin>().Map(c => c.Stop());
-                this.Kernel.Dispose();
+                kernelInstance.Components.GetAll<INinjectHttpApplicationPlugin>().Map(c => c.Stop());
+                kernelInstance.Dispose();
                 kernelInstance = null;
             }
         }

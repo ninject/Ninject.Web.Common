@@ -9,26 +9,27 @@ namespace $rootnamespace$.App_Start
     using Ninject.Web.Common;
 
     public static class NinjectWebCommon 
-	{
+    {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
         public static void Start() 
-		{
+        {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestModule));
-			bootstrapper.Initialize(CreateKernel);
+            DynamicModuleUtility.RegisterModule(typeof(HttpApplicationInitializationModule));
+            bootstrapper.Initialize(CreateKernel);
         }
-		
+        
         /// <summary>
         /// Stops the application.
         /// </summary>
-		public static void Stop()
-		{
-			bootstrapper.ShutDown();
-		}
-		
+        public static void Stop()
+        {
+            bootstrapper.ShutDown();
+        }
+        
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -46,6 +47,6 @@ namespace $rootnamespace$.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }		
+        }        
     }
 }

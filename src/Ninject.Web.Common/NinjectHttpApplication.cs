@@ -19,6 +19,7 @@
 
 namespace Ninject.Web.Common
 {
+    using System;
     using System.Web;
     using Ninject.Infrastructure;
 
@@ -51,12 +52,22 @@ namespace Ninject.Web.Common
         /// Gets the kernel.
         /// </summary>
         /// <value>The kernel.</value>
+        [Obsolete("Do not use Ninject as Service Locator")]
         public IKernel Kernel
         {
             get
             {
                 return this.bootstrapper.Kernel;
             }
+        }
+
+        /// <summary>
+        /// Executes custom initialization code after all event handler modules have been added.
+        /// </summary>
+        public override void Init()
+        {
+            base.Init();
+            this.bootstrapper.InitializeHttpApplication(this);
         }
 
         /// <summary>
@@ -67,7 +78,7 @@ namespace Ninject.Web.Common
             lock (this)
             {
                 this.bootstrapper.Initialize(this.CreateKernel);
-                this.onePerRequestModule.ReleaseScopeAtRequestEnd = this.Kernel.Settings.Get("ReleaseScopeAtRequestEnd", true);
+                this.onePerRequestModule.ReleaseScopeAtRequestEnd = this.bootstrapper.Kernel.Settings.Get("ReleaseScopeAtRequestEnd", true);
                 this.OnApplicationStarted();
             }
         }
