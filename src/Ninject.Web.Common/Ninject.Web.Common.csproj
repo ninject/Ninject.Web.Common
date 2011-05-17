@@ -45,6 +45,9 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="HttpApplicationInitializationModule.cs" />
     <Compile Include="IBootstrapper.cs" />
