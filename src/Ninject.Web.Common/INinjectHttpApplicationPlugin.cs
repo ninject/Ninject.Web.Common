@@ -1,6 +1,6 @@
 ﻿//-------------------------------------------------------------------------------
-// <copyright file="NinjectDependencyResolver.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+// <copyright file="INinjectHttpApplicationPlugin.cs" company="bbv Software Services AG">
+//   Copyright (c) 2010-2011 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,6 +27,12 @@ namespace Ninject.Web.Common
     public interface INinjectHttpApplicationPlugin : INinjectComponent
     {
         /// <summary>
+        /// Gets the request scope.
+        /// </summary>
+        /// <value>The request scope.</value>
+        object RequestScope { get; }
+        
+        /// <summary>
         /// Starts this instance.
         /// </summary>
         void Start();
@@ -35,11 +41,5 @@ namespace Ninject.Web.Common
         /// Stops this instance.
         /// </summary>
         void Stop();
-
-        /// <summary>
-        /// Gets the request scope.
-        /// </summary>
-        /// <value>The request scope.</value>
-        object RequestScope { get; }
     }
 }

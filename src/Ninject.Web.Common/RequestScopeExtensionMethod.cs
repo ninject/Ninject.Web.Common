@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
-// <copyright file="NinjectHttpApplication.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+// <copyright file="RequestScopeExtensionMethod.cs" company="bbv Software Services AG">
+//   Copyright (c) 2010-2011 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ namespace Ninject.Web.Common
     using Ninject.Syntax;
 
     /// <summary>
-    /// Defines extension methods the specifiy InRequestScope.
+    /// Defines extension methods the specify InRequestScope.
     /// </summary>
     public static class RequestScopeExtensionMethod
     {
@@ -34,7 +34,7 @@ namespace Ninject.Web.Common
         /// </summary>
         /// <typeparam name="T">The type of the service.</typeparam>
         /// <param name="syntax">The syntax.</param>
-        /// <returns>Teh syntax to define more inforametion.</returns>
+        /// <returns>The syntax to define more information.</returns>
         public static IBindingNamedWithOrOnSyntax<T> InRequestScope<T>(this IBindingInSyntax<T> syntax)
         {
             return syntax.InScope(GetScope);
