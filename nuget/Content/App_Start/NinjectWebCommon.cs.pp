@@ -18,7 +18,7 @@ namespace $rootnamespace$.App_Start
         public static void Start() 
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestModule));
-            DynamicModuleUtility.RegisterModule(typeof(HttpApplicationInitializationModule));
+            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
         
@@ -37,6 +37,9 @@ namespace $rootnamespace$.App_Start
         private static IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
+            kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+            kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+			
             RegisterServices(kernel);
             return kernel;
         }

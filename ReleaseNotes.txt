@@ -1,0 +1,1 @@
+- Changed: OnePerRequestModule has been renamed to OnePerRequestHttpModule

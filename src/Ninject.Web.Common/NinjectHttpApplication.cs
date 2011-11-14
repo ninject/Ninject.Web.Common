@@ -31,7 +31,7 @@ namespace Ninject.Web.Common
         /// <summary>
         /// The one per request module to release request scope at the end of the request
         /// </summary>
-        private readonly OnePerRequestModule onePerRequestModule;
+        private readonly OnePerRequestHttpModule onePerRequestHttpModule;
 
         /// <summary>
         /// The bootstrapper that starts the application.
@@ -43,8 +43,8 @@ namespace Ninject.Web.Common
         /// </summary>
         protected NinjectHttpApplication()
         {
-            this.onePerRequestModule = new OnePerRequestModule();
-            this.onePerRequestModule.Init(this);
+            this.onePerRequestHttpModule = new OnePerRequestHttpModule();
+            this.onePerRequestHttpModule.Init(this);
             this.bootstrapper = new Bootstrapper();
         }
 
@@ -78,7 +78,7 @@ namespace Ninject.Web.Common
             lock (this)
             {
                 this.bootstrapper.Initialize(this.CreateKernel);
-                this.onePerRequestModule.ReleaseScopeAtRequestEnd = this.bootstrapper.Kernel.Settings.Get("ReleaseScopeAtRequestEnd", true);
+                this.onePerRequestHttpModule.ReleaseScopeAtRequestEnd = this.bootstrapper.Kernel.Settings.Get("ReleaseScopeAtRequestEnd", true);
                 this.OnApplicationStarted();
             }
         }

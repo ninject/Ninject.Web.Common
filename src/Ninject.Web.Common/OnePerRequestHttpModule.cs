@@ -25,12 +25,12 @@ namespace Ninject.Web.Common
     /// <summary>
     /// Provides callbacks to more aggressively collect objects scoped to HTTP requests.
     /// </summary>
-    public class OnePerRequestModule : GlobalKernelRegistration, IHttpModule
+    public sealed class OnePerRequestHttpModule : GlobalKernelRegistration, IHttpModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="OnePerRequestModule"/> class.
+        /// Initializes a new instance of the <see cref="OnePerRequestHttpModule"/> class.
         /// </summary>
-        public OnePerRequestModule()
+        public OnePerRequestHttpModule()
         {
             this.ReleaseScopeAtRequestEnd = true;
         }
