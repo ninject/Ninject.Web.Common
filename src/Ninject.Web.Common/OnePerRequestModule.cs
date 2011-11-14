@@ -19,16 +19,13 @@
 
 namespace Ninject.Web.Common
 {
-    using System.Linq;
     using System.Web;
-
     using Ninject.Activation.Caching;
-    using Ninject.Infrastructure.Language;
 
     /// <summary>
     /// Provides callbacks to more aggressively collect objects scoped to HTTP requests.
     /// </summary>
-    public class OnePerRequestModule : GlobalKernelRegistry, IHttpModule
+    public class OnePerRequestModule : GlobalKernelRegistration, IHttpModule
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OnePerRequestModule"/> class.
@@ -49,7 +46,7 @@ namespace Ninject.Web.Common
             get;
             set;
         }
-        
+
         /// <summary>
         /// Initializes the module.
         /// </summary>
@@ -60,6 +57,13 @@ namespace Ninject.Web.Common
         }
 
         /// <summary>
+        /// Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+        /// </summary>
+        public void Dispose()
+        {
+        }
+
+        /// <summary>
         /// Deactivates instances owned by the current <see cref="HttpContext"/>.
         /// </summary>
         public void DeactivateInstancesForCurrentHttpRequest()
@@ -67,7 +71,7 @@ namespace Ninject.Web.Common
             if (this.ReleaseScopeAtRequestEnd)
             {
                 var context = HttpContext.Current;
-                Kernels.Select(kernel => kernel.Components.Get<ICache>()).Map(cache => cache.Clear(context));
+                this.MapKernels(kernel => kernel.Components.Get<ICache>().Clear(context));
             }
         }
     }
