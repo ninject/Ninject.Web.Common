@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // <copyright file="HttpApplicationInitializationHttpModule.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+//   Copyright (c) 2010-2011 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ namespace Ninject.Web.Common
     using Ninject.Infrastructure.Disposal;
 
     /// <summary>
-    /// Initializes a HttpApplication instance
+    /// Initializes a <see cref="HttpApplication"/> instance
     /// </summary>
     public class HttpApplicationInitializationHttpModule : DisposableObject, IHttpModule
     {

@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 // <copyright file="Bootstrapper.cs" company="bbv Software Services AG">
-//   Copyright (c) 2010 bbv Software Services AG
+//   Copyright (c) 2010-2011 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,9 +54,9 @@ namespace Ninject.Web.Common
         }
 
         /// <summary>
-        /// Initializes a HttpApplication instance.
+        /// Initializes a <see cref="HttpApplication"/> instance.
         /// </summary>
-        /// <param name="httpApplication">The HttpApplication instance.</param>
+        /// <param name="httpApplication">The <see cref="HttpApplication"/> instance.</param>
         public void InitializeHttpApplication(HttpApplication httpApplication)
         {
             kernelInstance.Inject(httpApplication);
