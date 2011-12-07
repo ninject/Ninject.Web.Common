@@ -50,6 +50,7 @@ namespace Ninject.Web.Common
             kernelInstance = createKernelCallback();
 
             kernelInstance.Components.GetAll<INinjectHttpApplicationPlugin>().Map(c => c.Start());
+            kernelInstance.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
             kernelInstance.Inject(this);
         }
 
