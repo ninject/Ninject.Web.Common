@@ -7,11 +7,11 @@
 	<property name="product.description" value="Web Common Extension for Ninject" overwrite="false"/>
 	<property name="product.platforms" value="net-3.5,net-4.0,mono-2.0"  overwrite="false"/>
 	<property name="product.buildserverPlatforms" value="net-3.5,net-4.0,mono-2.0"  overwrite="false"/>
-	<property name="dependencies" value="Ninject" overwrite="false"/>
+	<property name="dependencies" value="Ninject,Ninject.Extensions.Xml" overwrite="false"/>
 
 	<include buildfile="Ninject.include" />
-	<target name="all" depends="core csl"/>
-	<target name="nuget-all" depends="nuget"/>
+	<target name="all" depends="core xml"/>
+	<target name="nuget-all" depends="nuget nuget-xml"/>
 
 	<target name="core" depends="init">
 		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build}/${product.assembly}" doc="${current.path.build}/${product.docfile}" keyfile="${path.src}/${product.keyfile}">
@@ -30,22 +30,43 @@
 		</csc>
 	</target>
 	
-	<target name="csl" depends="init core">
+	<target name="xml" depends="init core">
 		<property name="current.path.build.extensions" value="${path.build}/${build.platform}/${build.config}/extensions"/>
 		<mkdir dir="${current.path.build.extensions}" if="${not(directory::exists(current.path.build.extensions))}"/>
 
-		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build.extensions}/Ninject.Extensions.Wcf.CommonServiceLocator.dll">
+		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build.extensions}/Ninject.Web.Common.Xml.dll">
 			<arg line="/filealign:512" unless="${nant.settings.currentframework == 'mono-2.0'}"/>
 			<sources basedir="${path.src}">
 				<include name="${build.asminfo}"/>
+				<include name="${product.name}.Xml/**/*.cs"/>
 			</sources>
 			<references basedir="${current.path.build}">
 				<include name="mscorlib.dll"/>
 				<include name="System.dll"/>
 				<include name="System.Web.dll"/>
 				<include name="System.Core.dll"/>
+				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
+				<include name="${path.lib}/Ninject.Extensions.Xml/${build.platform}/Ninject.Extensions.Xml.dll"/>
+				<include name="${current.path.build}/${product.assembly}"/>
 			</references>
 		</csc>
+	</target>	
+	
+	<target name="nuget-xml">
+		<property name="nuget.sourcedir" value="${path.base}/nuget-xml" />
+		<property name="nuget.basedir" value="${path.base}/build/nuget-xml" />
+		<property name="nuget.platforms" value="${product.platforms}" />
+		<property name="nuget.name" value="${product.name}.Xml" />
+		<property name="nuget.releaseDirectory" value="${path.build}\${build.platform}\release\Xml" dynamic="true"/>
+		<property name="nuget.dependencies" value="${product.name},${dependencies}" />
+		<property name="nuget.additionalFiles" value="-" />
+		<property name="nuget.packageName" value="${nuget.name}${product.packagePostfix}" />	
+		<property name="nuget.symbol.basedir" value="${path.base}/build/nuget-xml_symbol" />
+		<property name="nuget.project" value="${path.src}/${product.name}.Xml/${product.name}.Xml.csproj" />
+
+		<property name="nant.settings.currentframework" value="net-4.0"/>
+		<msbuild project="${nuget.project}" />
+		<call target="nuget-run"/>
 	</target>
 
 	<target name="compile-tests" depends="core" unless="${skip.tests}" if="${not(string::contains(build.platform, 'silverlight') or build.platform == 'netcf-3.5')}">
