@@ -25,6 +25,7 @@ using System.Security;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Ninject.Web.Common")]
+[assembly: AssemblyDescriptionAttribute("Bootstrapper for web projects.")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("7F04F755-F11D-4BD7-B967-F31D80741B89")]
