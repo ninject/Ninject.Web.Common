@@ -13,7 +13,7 @@
 	<projectUrl>http://www.ninject.org</projectUrl>
     <dependencies>
       <dependency id="Ninject" version="{NinjectVersion}" />
-      <dependency id="WebActivator" version="1.4" />
+      <dependency id="WebActivator" version="1.5" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Microsoft.Web.Infrastructure" targetFramework="net40"/>
