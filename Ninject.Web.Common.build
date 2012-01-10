@@ -6,7 +6,7 @@
 	<property name="product.duration" value="2009-2011" overwrite="false"/>
 	<property name="product.description" value="Web Common Extension for Ninject" overwrite="false"/>
 	<property name="product.platforms" value="net-3.5,net-4.0,net-4.5,mono-2.0"  overwrite="false"/>
-	<property name="product.buildserverPlatforms" value="net-3.5,net-4.0,net-4.5,mono-2.0"  overwrite="false"/>
+	<property name="product.buildserverPlatforms" value="net-3.5,net-4.0,mono-2.0"  overwrite="false"/>
 	<property name="dependencies" value="Ninject,Ninject.Extensions.Xml" overwrite="false"/>
 
 	<include buildfile="Ninject.include" />
