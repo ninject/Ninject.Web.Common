@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="Ninject, Version=2.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Ninject\net-4.0\Ninject.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>	  
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />
