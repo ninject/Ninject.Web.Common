@@ -47,7 +47,7 @@ namespace Ninject.Web.Common
         /// <returns>The scope.</returns>
         private static object GetScope(IContext ctx)
         {
-            var scope = ctx.Kernel.Components.GetAll<INinjectHttpApplicationPlugin>().Select(c => c.RequestScope).FirstOrDefault(s => s != null);
+            var scope = ctx.Kernel.Components.GetAll<INinjectHttpApplicationPlugin>().Select(c => c.GetRequestScope(ctx)).FirstOrDefault(s => s != null);
             return scope;
         }
     }

@@ -19,6 +19,7 @@
 
 namespace Ninject.Web.Common
 {
+    using Ninject.Activation;
     using Ninject.Components;
 
     /// <summary>
@@ -29,8 +30,9 @@ namespace Ninject.Web.Common
         /// <summary>
         /// Gets the request scope.
         /// </summary>
-        /// <value>The request scope.</value>
-        object RequestScope { get; }
+        /// <param name="context">The context.</param>
+        /// <returns>The request scope.</returns>
+        object GetRequestScope(IContext context);
         
         /// <summary>
         /// Starts this instance.
