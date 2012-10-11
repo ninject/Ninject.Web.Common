@@ -1,21 +1,18 @@
 <?xml version="1.0"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <id>Ninject.Web.Common</id>
+    <id>Ninject.Web.Common.Selfhost</id>
     <version></version>
     <authors>Ninject Project Contributors</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-	<licenseUrl>https://github.com/ninject/ninject.extensions.wcf/raw/master/LICENSE.txt</licenseUrl>
-    <description>Bootstrapper for web projects</description>
+	<licenseUrl>https://github.com/ninject/ninject.extensions.selfhost/raw/master/LICENSE.txt</licenseUrl>
+    <description>Adds self hosting support to web common.</description>
     <language>en-US</language>
 	<tags>Ninject ioc di ASP.NET</tags>
 	<iconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</iconUrl>
 	<projectUrl>http://www.ninject.org</projectUrl>
     <dependencies>
-      <dependency id="Ninject" version="{NinjectVersion}" />
+      <dependency id="Ninject.Web.Common" version="" />
     </dependencies>
-    <frameworkAssemblies>
-      <frameworkAssembly assemblyName="Microsoft.Web.Infrastructure" targetFramework="net40"/>
-    </frameworkAssemblies>
   </metadata>
 </package>

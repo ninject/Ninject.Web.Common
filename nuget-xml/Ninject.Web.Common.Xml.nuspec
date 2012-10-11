@@ -12,10 +12,8 @@
 	<iconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</iconUrl>
 	<projectUrl>http://www.ninject.org</projectUrl>
     <dependencies>
-      <dependency id="Ninject" version="{NinjectVersion}" />
       <dependency id="Ninject.Extensions.Xml" version="" />
       <dependency id="Ninject.Web.Common" version="" />
-      <dependency id="WebActivator" version="1.4" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="Microsoft.Web.Infrastructure" targetFramework="net40"/>
