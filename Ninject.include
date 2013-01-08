@@ -503,7 +503,10 @@
 
 	<target name="nuget-run" depends="get-git-revision" description="Copies the nuget output to the top bin directory">
 		<delete dir="${nuget.basedir}"/>
-		<delete dir="${nuget.symbol.basedir}"/>
+		<if test="${not(nuget.symbol.basedir == '')}"> <!-- unless does not work on delete -->
+		    <delete dir="${nuget.symbol.basedir}"/>
+		</if>
+		
 		<property name="nuget.platform" value=""/>
 		<property name="nuget.version" value="${build.version}" if="${product.additionalVersionTag == ''}"/>
 		<property name="nuget.version" value="${version.major}.${version.minor}.${version.build}${product.additionalVersionTag}" unless="${product.additionalVersionTag == ''}"/>
