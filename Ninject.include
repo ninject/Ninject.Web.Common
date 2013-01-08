@@ -601,20 +601,22 @@
 			</fileset>
 		</move>
 		
-		<exec program="${path.tools.nuget}" workingdir="${nuget.basedir}" commandline="pack ${nuget.project} -symbols" />
-		<unzip zipfile="${path.dist}\NuGet\${nuget.packageName}.${nuget.version}.nupkg" todir="${nuget.symbol.basedir}/target"/>
-		<unzip zipfile="${nuget.basedir}\${nuget.name}.${version.major}.${version.minor}.0.0.symbols.nupkg" todir="${nuget.symbol.basedir}/source"/>
-		<copy overwrite="false" todir="${nuget.symbol.basedir}/target">
-			<fileset basedir="${nuget.symbol.basedir}/source">
-				<include name="[Content_Types].xml" />
-				<include name="src/**" />
-			</fileset>
-		</copy>
-		<zip zipfile="${path.dist}\NuGet\${nuget.packageName}.${nuget.version}.symbols.nupkg">
-			<fileset basedir="${nuget.symbol.basedir}/target">
-				<include name="**"/>
-			</fileset>
-		</zip>
+		<if test="${not(nuget.project == '')}">
+			<exec program="${path.tools.nuget}" workingdir="${nuget.basedir}" commandline="pack ${nuget.project} -symbols" />
+			<unzip zipfile="${path.dist}\NuGet\${nuget.packageName}.${nuget.version}.nupkg" todir="${nuget.symbol.basedir}/target"/>
+			<unzip zipfile="${nuget.basedir}\${nuget.name}.${version.major}.${version.minor}.0.0.symbols.nupkg" todir="${nuget.symbol.basedir}/source"/>
+			<copy overwrite="false" todir="${nuget.symbol.basedir}/target">
+				<fileset basedir="${nuget.symbol.basedir}/source">
+					<include name="[Content_Types].xml" />
+					<include name="src/**" />
+				</fileset>
+			</copy>
+			<zip zipfile="${path.dist}\NuGet\${nuget.packageName}.${nuget.version}.symbols.nupkg">
+				<fileset basedir="${nuget.symbol.basedir}/target">
+					<include name="**"/>
+				</fileset>
+			</zip>
+		</if>
 	</target>
 	
 	<target name="CopyDefaultTestInfrastructureAssemblies">
