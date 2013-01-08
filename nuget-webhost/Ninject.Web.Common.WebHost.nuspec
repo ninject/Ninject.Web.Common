@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <id>Ninject.Web.Common.IISHost</id>
+    <id>Ninject.Web.Common.WebHost</id>
     <version></version>
     <authors>Ninject Project Contributors</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-	<licenseUrl>https://github.com/ninject/ninject.extensions.IISHost/raw/master/LICENSE.txt</licenseUrl>
-    <description>Adds IIS hosting support to web common.</description>
+	<licenseUrl>https://github.com/ninject/ninject.web.common/raw/master/LICENSE.txt</licenseUrl>
+    <description>Adds Web hosting support to web common.</description>
     <language>en-US</language>
 	<tags>Ninject ioc di ASP.NET</tags>
 	<iconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</iconUrl>

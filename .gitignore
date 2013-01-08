@@ -11,3 +11,4 @@ build
 /lib/Ninject/*/**
 /lib/Ninject.Extensions.Xml/*.zip
 /lib/Ninject.Extensions.Xml/*/**
+/src/Ninject.Web.Common.1.1.dotCover
