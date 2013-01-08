@@ -457,6 +457,7 @@
 	</target>
 	
 	<target name="csproj">
+	    <property name="nant.settings.currentframework" value="net-4.5"/>
 		<msbuild project="${path.src}/${product.name}/${product.name}.csproj" />
 	</target>
 	
