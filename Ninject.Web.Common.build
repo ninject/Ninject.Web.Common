@@ -97,8 +97,8 @@
 		<property name="nuget.basedir" value="${path.base}/build/nuget-selfhost" />
 		<property name="nuget.platforms" value="${product.platforms}" />
 		<property name="nuget.name" value="${product.name}.Selfhost" />
-		<property name="nuget.releaseDirectory" value="${path.build}\${build.platform}\release\Selfhost" dynamic="true"/>
-		<property name="nuget.dependencies" value="${product.name},Ninject.Web.WebApi.Selfhost" />
+		<property name="nuget.releaseDirectory" value="${path.build}\${build.platform}\release" dynamic="true"/>
+		<property name="nuget.dependencies" value="${product.name}" />
 		<property name="nuget.additionalFiles" value="-" />
 		<property name="nuget.packageName" value="${nuget.name}${product.packagePostfix}" />	
 		<property name="nuget.symbol.basedir" value="${path.base}/build/nuget-selfhost_symbol" />
@@ -114,7 +114,7 @@
 		<property name="nuget.basedir" value="${path.base}/build/nuget-webhost" />
 		<property name="nuget.platforms" value="" />
 		<property name="nuget.name" value="${product.name}.WebHost" />
-		<property name="nuget.dependencies" value="${product.name},Ninject.Web.WebApi.WebHost" />
+		<property name="nuget.dependencies" value="${product.name}" />
 		<property name="nuget.additionalFiles" value="-" />
 		<property name="nuget.packageName" value="${nuget.name}${product.packagePostfix}" />	
 		<property name="nuget.symbol.basedir" value="" />
