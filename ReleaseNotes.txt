@@ -1,4 +1,4 @@
 Version 3.0.0.0
 ---------------
-- Inintial release: This package is the base for all web extesnisons.
+- Inintial release: This package is the base for all web extensions.
 - Changed: OnePerRequestModule has been renamed to OnePerRequestHttpModule
