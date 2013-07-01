@@ -88,8 +88,8 @@ namespace Ninject.Web.Common
         /// </summary>
         public void Application_End()
         {
-            this.bootstrapper.ShutDown();
             this.OnApplicationStopped();
+            this.bootstrapper.ShutDown();
         }
 
         /// <summary>
