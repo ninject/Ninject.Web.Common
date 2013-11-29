@@ -34,7 +34,7 @@ namespace Ninject.Web.Common.Xml
         /// </summary>
         public override void Load()
         {
-            this.Kernel.Components.Add<IScopeHandler, SingletonScopeHandler>();
+            this.Kernel.Components.Add<IScopeHandler, RequestScopeHandler>();
         }
     }
 }
