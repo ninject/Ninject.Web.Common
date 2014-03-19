@@ -10,9 +10,6 @@
     <projectUrl>https://github.com/owin-contrib/owin-hosting/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>OWIN IAppBuilder startup interface</description>
-    <releaseNotes />
-    <copyright />
-    <language />
     <tags>OWIN</tags>
   </metadata>
 </package>
