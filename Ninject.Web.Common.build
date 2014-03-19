@@ -10,8 +10,8 @@
 	<property name="dependencies" value="Ninject,Ninject.Extensions.Xml" overwrite="false"/>
 
 	<include buildfile="Ninject.include" />
-	<target name="all" depends="core xml selfhost"/>
-	<target name="nuget-all" depends="nuget nuget-xml nuget-selfhost nuget-webhost"/>
+	<target name="all" depends="core xml selfhost owinhost"/>
+	<target name="nuget-all" depends="nuget nuget-xml nuget-selfhost nuget-webhost nuget-owinhost"/>
 
 	<target name="core" depends="init">
 		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build}/${product.assembly}" doc="${current.path.build}/${product.docfile}" keyfile="${path.src}/${product.keyfile}">
@@ -74,6 +74,52 @@
 			</references>
 		</csc>
 	</target>	
+	
+	<target name="owinhost" depends="init core" if="${not(string::contains(build.platform, 'net-3.5')) 
+		and not(string::contains(build.platform, 'net-4.0'))
+		and not(string::contains(build.platform, 'mono-2.0')) 
+		and not(string::contains(build.platform, 'mono-3.5'))
+		and not(string::contains(build.platform, 'mono-4.0'))}">
+		<property name="current.path.build.extensions" value="${path.build}/${build.platform}/${build.config}/extensions"/>
+		<mkdir dir="${current.path.build.extensions}" if="${not(directory::exists(current.path.build.extensions))}"/>
+		
+		<property name="packagepath.Owin" value="Owin.*/lib/net40" if="${string::contains(build.platform, 'net-4.5')}" />
+		<property name="current.path.lib.Owin" value="${path.packages}/${packagepath.Owin}"/>
+		<copy todir="${current.path.build}/Owin/lib">
+			<fileset basedir="${path.packages}">
+				<include name="${packagepath.Owin}/*.dll"/>
+				<include name="${packagepath.Owin}/*.xml"/>
+			</fileset>
+		</copy> 
+		
+		<property name="packagepath.Microsoft.Owin" value="Microsoft.Owin.*/lib/net45" if="${string::contains(build.platform, 'net-4.5')}" />
+		<property name="current.path.lib.Microsoft.Owin" value="${path.packages}/${packagepath.Microsoft.Owin}"/>
+		<copy todir="${current.path.build}/Microsoft.Owin/lib">
+			<fileset basedir="${path.packages}">
+				<include name="${packagepath.Microsoft.Owin}/*.dll"/>
+				<include name="${packagepath.Microsoft.Owin}/*.xml"/>
+			</fileset>
+		</copy> 
+
+		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" 
+		     output="${current.path.build}/${product.name}.OwinHost.dll" doc="${current.path.build}/${product.name}.OwinHost.xml" keyfile="${path.src}/${product.keyfile}">
+			<arg line="/filealign:512" unless="${nant.settings.currentframework == 'mono-2.0'}"/>
+			<sources basedir="${path.src}">
+				<include name="${build.asminfo}"/>
+				<include name="${product.name}.OwinHost/**/*.cs"/>
+			</sources>
+			<references basedir="${current.path.build}">
+				<include name="mscorlib.dll"/>
+				<include name="System.dll"/>
+				<include name="System.Web.dll"/>
+				<include name="System.Core.dll"/>
+				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
+				<include name="${current.path.build}/${product.assembly}"/>
+				<include name="${current.path.lib.Owin}/Owin.dll" />
+				<include name="${current.path.lib.Microsoft.Owin}/Microsoft.Owin.dll" />
+			</references>
+		</csc>
+	</target>		
 
 	<target name="nuget-xml">
 		<property name="nuget.sourcedir" value="${path.base}/nuget-xml" />
@@ -121,6 +167,23 @@
 		<property name="nuget.project" value="" />
 
 		<property name="nant.settings.currentframework" value="net-4.0"/>
+		<call target="nuget-run"/>
+	</target>	
+	
+	<target name="nuget-owinhost">
+		<property name="nuget.sourcedir" value="${path.base}/nuget-owinhost" />
+		<property name="nuget.basedir" value="${path.base}/build/nuget-owinhost" />
+		<property name="nuget.platforms" value="net-4.5" />
+		<property name="nuget.name" value="${product.name}.owinhost" />
+		<property name="nuget.releaseDirectory" value="${path.build}\${build.platform}\release" dynamic="true"/>
+		<property name="nuget.dependencies" value="${product.name}" />
+		<property name="nuget.additionalFiles" value="-" />
+		<property name="nuget.packageName" value="${nuget.name}${product.packagePostfix}" />	
+		<property name="nuget.symbol.basedir" value="${path.base}/build/nuget-owinhost_symbol" />
+		<property name="nuget.project" value="${path.src}/${product.name}.OwinHost/${product.name}.OwinHost.csproj" />
+
+		<property name="nant.settings.currentframework" value="net-4.0"/>
+		<msbuild project="${nuget.project}" />
 		<call target="nuget-run"/>
 	</target>	
 
