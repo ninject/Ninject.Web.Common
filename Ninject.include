@@ -491,7 +491,6 @@
 		<property name="version.minor" value="${gitminor}" overwrite="true" />
 		<property name="version.build" value="${gitbuild}" overwrite="true" />
 		<property name="version.revision" value="${gitrevisionnumber}" overwrite="true" />
-		<echo message="Major Version changed to ${version.major}" />
 		
 		<delete file="${temp.revision.file}" failonerror="false"/>
 		
@@ -588,11 +587,11 @@
 			<property name="asm" value="${asm2}" if="${file::exists(asm2)}"/>
 			<property name="asm" value="${asm1}" if="${file::exists(asm1)}"/>
 			
-			<property name="version" value="${assemblyname::get-version(assemblyname::get-assembly-name(asm))}"/>
+			<property name="dependencyVersion" value="${assemblyname::get-version(assemblyname::get-assembly-name(asm))}"/>
 			<property name="maxVersion" value=""/>
 			<property name="versionPrerelease" value=""/>
 			<property name="i" value="0"/>
-			<foreach item="String" in="${version}" delim="." property="versionPart">
+			<foreach item="String" in="${dependencyVersion}" delim="." property="versionPart">
 				<property name="i" value="${int::parse(i) + 1}"/>
 				<property name="maxVersion" value="${maxVersion + '.'}" unless="${i == '1'}"/>
 				<property name="maxVersion" value="${maxVersion + versionPart}" if="${i == '1'}"/>
@@ -607,7 +606,7 @@
 		    <property name="versionPrerelease" value="${versionPrerelease + version.prerelease}"/>
 			<xmlpoke file="${nuget.basedir}/${nuget.name}.nuspec" 
 			         xpath="//package/nu:metadata/nu:dependencies/nu:dependency[@id='${dependency}']/@version" 
-					 value="${'[' + version + ',' + maxVersion + ')'}"
+					 value="${'[' + dependencyVersion + ',' + maxVersion + ')'}"
 					 if="${version.prerelease == ''}">
 				<namespaces>
 					<namespace prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance" />
@@ -638,7 +637,6 @@
 		<if test="${not(nuget.project == '')}">
 			<exec program="${path.tools.nuget}" workingdir="${nuget.basedir}" commandline="pack ${nuget.project} -symbols" />
 			<unzip zipfile="${nuget.basedir}\${nuget.packageName}.${nuget.version}.nupkg" todir="${nuget.symbol.basedir}/target"/>
-			<echo message="Unzipping: ${nuget.basedir}\${nuget.packageName}.${version.major}.${version.minor}.0.0.symbols.nupkg" />
 			<unzip zipfile="${nuget.basedir}\${nuget.packageName}.${version.major}.${version.minor}.0.0.symbols.nupkg" todir="${nuget.symbol.basedir}/source"/>
 			<copy overwrite="false" todir="${nuget.symbol.basedir}/target">
 				<fileset basedir="${nuget.symbol.basedir}/source">
