@@ -174,7 +174,7 @@
 		<property name="nuget.sourcedir" value="${path.base}/nuget-owinhost" />
 		<property name="nuget.basedir" value="${path.base}/build/nuget-owinhost" />
 		<property name="nuget.platforms" value="net-4.5" />
-		<property name="nuget.name" value="${product.name}.owinhost" />
+		<property name="nuget.name" value="${product.name}.OwinHost" />
 		<property name="nuget.releaseDirectory" value="${path.build}\${build.platform}\release" dynamic="true"/>
 		<property name="nuget.dependencies" value="${product.name}" />
 		<property name="nuget.additionalFiles" value="-" />
