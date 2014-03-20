@@ -491,6 +491,7 @@
 		<property name="version.minor" value="${gitminor}" overwrite="true" />
 		<property name="version.build" value="${gitbuild}" overwrite="true" />
 		<property name="version.revision" value="${gitrevisionnumber}" overwrite="true" />
+		<echo message="Major Version changed to ${version.major}" />
 		
 		<delete file="${temp.revision.file}" failonerror="false"/>
 		
@@ -637,6 +638,7 @@
 		<if test="${not(nuget.project == '')}">
 			<exec program="${path.tools.nuget}" workingdir="${nuget.basedir}" commandline="pack ${nuget.project} -symbols" />
 			<unzip zipfile="${nuget.basedir}\${nuget.packageName}.${nuget.version}.nupkg" todir="${nuget.symbol.basedir}/target"/>
+			<echo message="Unzipping: ${nuget.basedir}\${nuget.packageName}.${version.major}.${version.minor}.0.0.symbols.nupkg" />
 			<unzip zipfile="${nuget.basedir}\${nuget.packageName}.${version.major}.${version.minor}.0.0.symbols.nupkg" todir="${nuget.symbol.basedir}/source"/>
 			<copy overwrite="false" todir="${nuget.symbol.basedir}/target">
 				<fileset basedir="${nuget.symbol.basedir}/source">
