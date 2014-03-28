@@ -1,3 +1,7 @@
+Version 3.2.1
+---------------
+- Added WebCommonNinjectModule that contains the bindings that are shared among all web extesnions to support multiple of them in one application. 
+
 Version 3.2.0.0
 ---------------
 - Added OWIN support.
