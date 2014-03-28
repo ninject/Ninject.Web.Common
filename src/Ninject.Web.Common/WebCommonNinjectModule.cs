@@ -22,15 +22,22 @@
 namespace Ninject.Web.Common
 {
     using System.Web;
-    using System.Web.Routing;
 
+    /// <summary>
+    /// Defines the bindings that are common for all web extensions.
+    /// </summary>
     public class WebCommonNinjectModule : GlobalKernelRegistrationModule<OnePerRequestHttpModule>
     {
+        /// <summary>
+        /// Loads the module into the kernel.
+        /// </summary>
         public override void Load()
         {
-            this.Bind<RouteCollection>().ToConstant(RouteTable.Routes);
-            this.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
+#if !NET_35
+            this.Bind<System.Web.Routing.RouteCollection>().ToConstant(System.Web.Routing.RouteTable.Routes);
             this.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
+#endif
+            this.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
         }
     }
 }
