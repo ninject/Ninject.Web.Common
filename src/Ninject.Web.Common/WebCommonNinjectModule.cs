@@ -33,6 +33,7 @@ namespace Ninject.Web.Common
         /// </summary>
         public override void Load()
         {
+			base.Load();
 #if !NET_35
             this.Bind<System.Web.Routing.RouteCollection>().ToConstant(System.Web.Routing.RouteTable.Routes);
             this.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
