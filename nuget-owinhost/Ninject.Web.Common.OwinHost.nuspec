@@ -13,7 +13,7 @@
 	<projectUrl>http://www.ninject.org</projectUrl>
     <dependencies>
       <dependency id="Ninject.Web.Common" version="" />
-      <dependency id="Microsoft.Owin" version="[2.0,3.0)" /> 
+      <dependency id="Microsoft.Owin" version="[3.0,4.0)" /> 
     </dependencies>
   </metadata>
 </package>
