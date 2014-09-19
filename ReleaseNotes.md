@@ -1,6 +1,10 @@
+Version 3.2.3
+---------------
+- Added Owin 3.0 support
+
 Version 3.2.2
 ---------------
-Fixed that InRequestScoped objects were not released immediatly anymore due to missing call registration in GlobalKernelRegistration.
+- Fixed that InRequestScoped objects were not released immediatly anymore due to missing call registration in GlobalKernelRegistration.
 
 Version 3.2.1
 ---------------
