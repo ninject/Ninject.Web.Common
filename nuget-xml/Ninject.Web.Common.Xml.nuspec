@@ -5,7 +5,7 @@
     <version></version>
     <authors>Ninject Project Contributors</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-	<licenseUrl>https://github.com/ninject/ninject.extensions.xml/raw/master/LICENSE.txt</licenseUrl>
+	<licenseUrl>https://raw.githubusercontent.com/ninject/ninject.extensions.xml/master/LICENSE.txt</licenseUrl>
     <description>Adds Xml support for InRequestScope</description>
     <language>en-US</language>
 	<tags>Ninject ioc di ASP.NET</tags>
