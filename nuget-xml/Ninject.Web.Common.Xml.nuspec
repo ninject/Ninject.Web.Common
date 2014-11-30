@@ -5,12 +5,13 @@
     <version></version>
     <authors>Ninject Project Contributors</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-	<licenseUrl>https://raw.githubusercontent.com/ninject/ninject.extensions.xml/master/LICENSE.txt</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/ninject/ninject.extensions.xml/master/LICENSE.txt</licenseUrl>
     <description>Adds Xml support for InRequestScope</description>
+    <releaseNotes>https://github.com/ninject/Ninject.Web.Common/blob/master/ReleaseNotes.md</releaseNotes>
     <language>en-US</language>
-	<tags>Ninject ioc di ASP.NET</tags>
-	<iconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</iconUrl>
-	<projectUrl>http://www.ninject.org</projectUrl>
+    <tags>Ninject ioc di ASP.NET</tags>
+    <iconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</iconUrl>
+    <projectUrl>http://www.ninject.org</projectUrl>
     <dependencies>
       <dependency id="Ninject.Extensions.Xml" version="" />
       <dependency id="Ninject.Web.Common" version="" />
