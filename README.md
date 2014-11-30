@@ -2,10 +2,10 @@
 
 Ninject.Web.Common provides the base infrastructure for all web type extension. It is required if you want to use one or more of the following extensions:
 
-- Ninject.Web.Mvc (all versions)
-- Ninject.Web.WebApi
-- Ninject.Web
-- Ninject.Extensions.Wcf
+- [Ninject.Web.Mvc](https://github.com/ninject/Ninject.Web.Common) (all versions)
+- [Ninject.Web.WebApi](https://github.com/ninject/Ninject.Web.WebApi)
+- [Ninject.Web](https://github.com/ninject/Ninject.Web)
+- [Ninject.Extensions.Wcf](https://github.com/ninject/Ninject.Extensions.Wcf)
 
 **This extension is not intended to be used standalone. At least one is required!**
 
