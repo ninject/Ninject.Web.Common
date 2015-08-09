@@ -134,7 +134,7 @@
 		<property name="nuget.basedir" value="${path.base}/build/nuget-xml" />
 		<property name="nuget.platforms" value="${product.platforms}" />
 		<property name="nuget.name" value="${product.name}.Xml" />
-		<property name="nuget.releaseDirectory" value="${path.build}\${build.platform}\release\Xml" dynamic="true"/>
+		<property name="nuget.releaseDirectory" value="${path.build}\${build.platform}\release" dynamic="true"/>
 		<property name="nuget.dependencies" value="${product.name},${dependencies}" />
 		<property name="nuget.additionalFiles" value="-" />
 		<property name="nuget.packageName" value="${nuget.name}${product.packagePostfix}" />	
