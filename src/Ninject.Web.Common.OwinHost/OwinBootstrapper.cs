@@ -83,8 +83,9 @@ namespace Ninject.Web.Common.OwinHost
                 {
                     if (this.bootstrapper == null)
                     {
-                        this.bootstrapper = new Bootstrapper();
-                        this.bootstrapper.Initialize(this.CreateKernel);
+                        var initializingBootstrapper = new Bootstrapper();
+                        initializingBootstrapper.Initialize(this.CreateKernel);
+                        this.bootstrapper = initializingBootstrapper;
                     }
                 }
             }
