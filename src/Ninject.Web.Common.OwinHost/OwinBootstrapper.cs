@@ -66,16 +66,11 @@ namespace Ninject.Web.Common.OwinHost
         /// <summary>
         /// The execute.
         /// </summary>
-        /// <param name="context">
-        /// The context.
-        /// </param>
-        /// <param name="next">
-        /// The next.
-        /// </param>
+        /// <param name="next">The next.</param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        /// The <see cref="Func{IDictionary{string, object}, Task}"/>.
         /// </returns>
-        public async Task Execute(IOwinContext context, Func<Task> next)
+        public Func<IDictionary<string, object>, Task> Execute(Func<IDictionary<string, object>, Task> next)
         {
             if (this.bootstrapper == null)
             {
@@ -90,11 +85,13 @@ namespace Ninject.Web.Common.OwinHost
                 }
             }
 
-            using (var scope = new OwinRequestScope())
-            {
-                context.Set(NinjectOwinRequestScope, scope);
-                await next();
-            }
+            return async (context) => {
+                using (var scope = new OwinRequestScope())
+                {
+                    context[NinjectOwinRequestScope] = scope;
+                    await next(context);
+                }
+            };
         }
 
         /// <summary>
