@@ -31,7 +31,7 @@ namespace Ninject.Web.Common
         /// <summary>
         /// Loads the module into the kernel.
         /// </summary>
-        public override void Load()
+        public override void InternalLoad()
         {
 			base.Load();
 #if !NET_35
