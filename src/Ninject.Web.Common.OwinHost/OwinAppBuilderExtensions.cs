@@ -20,6 +20,8 @@
 namespace Ninject.Web.Common.OwinHost
 {
     using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using Owin;
 
@@ -51,7 +53,10 @@ namespace Ninject.Web.Common.OwinHost
 
             app.Properties.Add(NinjectOwinBootstrapperKey, bootstrapper);
 
-            return app.Use(bootstrapper.Execute);
+
+            var middleware = new Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>(bootstrapper.Execute);
+
+            return app.Use(middleware);
         }  
     }
 }
