@@ -1,124 +1,59 @@
-﻿//-------------------------------------------------------------------------------
-// <copyright file="OwinBootstrapper.cs" company="bbv Software Services AG">
-//   Copyright (c) 2012 bbv Software Services AG
-//   Author: Remo Gloor (remo.gloor@gmail.com)
-//
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
-//   You may obtain a copy of the License at
-//
-//       http://www.apache.org/licenses/LICENSE-2.0
-//
-//   Unless required by applicable law or agreed to in writing, software
-//   distributed under the License is distributed on an "AS IS" BASIS,
-//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//   See the License for the specific language governing permissions and
-//   limitations under the License.
+﻿// -------------------------------------------------------------------------------------------------
+// <copyright file="OwinBootstrapper.cs" company="Ninject Project Contributors">
+//   Copyright (c) 2010-2011 bbv Software Services AG.
+//   Copyright (c) 2011-2017 Ninject Contributors.
+//   Licensed under the Apache License, Version 2.0, and the Microsoft Public License (Ms-PL).
 // </copyright>
-//-------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 
 namespace Ninject.Web.Common.OwinHost
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
     using Microsoft.Owin;
 
-    using Ninject.Modules;
-
     /// <summary>
-    /// The OWIN bootstrapper.
+    /// The Owin bootstrapper.
     /// </summary>
-     public class OwinBootstrapper
+    public class OwinBootstrapper
     {
         /// <summary>
-        /// The ninject OWIN request scope.
+        /// The Ninject Owin request scope.
         /// </summary>
-        public const string NinjectOwinRequestScope = "Ninject_Owin_Request_Scope";
+        public const string NinjectOwinRequestScope = "NinjectOwinRequestScope";
 
-        /// <summary>
-        /// The modules.
-        /// </summary>
-        private readonly IList<INinjectModule> modules = new List<INinjectModule>();
-
-        /// <summary>
-        /// The create kernel.
-        /// </summary>
-        private readonly Func<IKernel> createKernel;
-
-        /// <summary>
-        /// The bootstrapper.
-        /// </summary>
-        private Bootstrapper bootstrapper;
+        private readonly Func<IKernel> createKernelCallback;
+        private readonly IBootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OwinBootstrapper"/> class.
         /// </summary>
-        /// <param name="createKernel">
-        /// The create kernel.
-        /// </param>
-        public OwinBootstrapper(Func<IKernel> createKernel)
+        /// <param name="createKernelCallback">The create kernel callback function.</param>
+        public OwinBootstrapper(Func<IKernel> createKernelCallback)
         {
-            this.createKernel = createKernel;
+            this.createKernelCallback = createKernelCallback;
         }
 
         /// <summary>
-        /// The execute.
+        /// Handles the owin context.
         /// </summary>
-        /// <param name="context">
-        /// The context.
-        /// </param>
-        /// <param name="next">
-        /// The next.
-        /// </param>
+        /// <param name="next">The next moddleware factory.</param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        /// The Ninject moddleware factory.
         /// </returns>
-        public async Task Execute(IOwinContext context, Func<Task> next)
+        public Func<IDictionary<string, object>, Task> Execute(Func<IDictionary<string, object>, Task> next)
         {
-            if (this.bootstrapper == null)
+            this.bootstrapper.Initialize(this.createKernelCallback);
+
+            return async context =>
             {
-                lock (this.modules)
+                using (var scope = new OwinRequestScope())
                 {
-                    if (this.bootstrapper == null)
-                    {
-                        var initializingBootstrapper = new Bootstrapper();
-                        initializingBootstrapper.Initialize(this.CreateKernel);
-                        this.bootstrapper = initializingBootstrapper;
-                    }
+                    context[NinjectOwinRequestScope] = scope;
+                    await next(context);
                 }
-            }
-
-            using (var scope = new OwinRequestScope())
-            {
-                context.Set(NinjectOwinRequestScope, scope);
-                await next();
-            }
-        }
-
-        /// <summary>
-        /// Add a new module.
-        /// </summary>
-        /// <param name="ninjectModule">
-        /// The module.
-        /// </param>
-        public void AddModule(NinjectModule ninjectModule)
-        {
-            this.modules.Add(ninjectModule);
-        }
-
-        /// <summary>
-        /// Create the kernel.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="IKernel"/>.
-        /// </returns>
-        private IKernel CreateKernel()
-        {
-            var kernel = this.createKernel();
-            kernel.Load(this.modules);
-            return kernel;
+            };
         }
     }
 }

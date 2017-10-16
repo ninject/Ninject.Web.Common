@@ -1,20 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net45</TargetFrameworks>
     <Version>0.0.0</Version>
     <Authors>Remo Gloor (remo.gloor@gmail.com); Ninject Contributors</Authors>
     <Company>Ninject Project Contributors</Company>
-    <Product>Ninject.Web.Common.OwinHost</Product>
-    <Description>OWIN extension for Ninject.Web.Common</Description>
+    <Product>Ninject.Web.Common.WebHost</Product>
+    <Description>ASP.NET extension for Ninject.Web.Common</Description>
     <Copyright>2010-2011 bbv Software Services AG. 2011-2017 Ninject Contributors.</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>..\Ninject.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <PackageId>Ninject.Web.Common.OwinHost</PackageId>
+    <PackageId>Ninject.Web.Common.WebHost</PackageId>
     <PackageVersion>0.0.0</PackageVersion>
-    <PackageTags>IoC;DI;Ninject;Web;OWIN</PackageTags>
+    <PackageTags>IoC;DI;Ninject;Web;ASP.NET</PackageTags>
     <PackageProjectUrl>http://www.ninject.org/</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/ninject/Ninject.Web.Common/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <PackageIconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</PackageIconUrl>
@@ -36,8 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Owin" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Owin" Version="3.1.0" />
+    <Reference Include="System.Web" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>

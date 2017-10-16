@@ -1,68 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{79289DDA-E4E3-4836-8293-6CD92852E0C9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ninject.Web.Common.SelfHost</RootNamespace>
-    <AssemblyName>Ninject.Web.Common.SelfHost</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <Version>0.0.0</Version>
+    <Authors>Remo Gloor (remo.gloor@gmail.com); Ninject Contributors</Authors>
+    <Company>Ninject Project Contributors</Company>
+    <Product>Ninject.Web.Common.SelfHost</Product>
+    <Description>Self Host extension for Ninject.Web.Common</Description>
+    <Copyright>2010-2011 bbv Software Services AG. 2011-2017 Ninject Contributors.</Copyright>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyOriginatorKeyFile>..\Ninject.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <PackageId>Ninject.Web.Common.SelfHost</PackageId>
+    <PackageVersion>0.0.0</PackageVersion>
+    <PackageTags>IoC;DI;Ninject;Web;SelfHost</PackageTags>
+    <PackageProjectUrl>http://www.ninject.org/</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/ninject/Ninject.Web.Common/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageIconUrl>https://github.com/ninject/ninject/raw/master/logos/Ninject-Logo32.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/ninject/Ninject.Web.Common/raw/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ninject/Ninject.Web.Common</RepositoryUrl>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Ninject">
-      <HintPath>..\..\lib\Ninject\net-4.0\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <AdditionalFiles Include="..\stylecop.json" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="INinjectSelfHost.cs" />
-    <Compile Include="NinjectSelfHostBootstrapper.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Ninject.Web.Common\Ninject.Web.Common.csproj">
-      <Project>{1FD016A0-A938-4F81-88BE-0DED65D9A022}</Project>
-      <Name>Ninject.Web.Common</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Ninject.Web.Common\Ninject.Web.Common.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
