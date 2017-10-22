@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <Version>0.0.0</Version>
-    <Authors>Remo Gloor (remo.gloor@gmail.com); Ninject Contributors</Authors>
+    <Authors>Ninject Project Contributors</Authors>
     <Company>Ninject Project Contributors</Company>
     <Product>Ninject.Web.Common.Xml</Product>
     <Description>Xml extension for Ninject.Web.Common.</Description>
-    <Copyright>2010-2011 bbv Software Services AG. 2011-2017 Ninject Contributors.</Copyright>
+    <Copyright>2010-2011 bbv Software Services AG. 2011-2017 Ninject Project Contributors.</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>..\Ninject.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ninject.Extensions.Xml" Version="3.3.0-beta1" />
+    <PackageReference Include="Ninject.Extensions.Xml" Version="3.3.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
