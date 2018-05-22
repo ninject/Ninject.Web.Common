@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net45</TargetFrameworks>
@@ -32,7 +32,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="App_Start\Ninject.Web.Common.cs.pp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Start\Ninject.Web.Common.cs.pp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +48,7 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="WebActivatorEx" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
