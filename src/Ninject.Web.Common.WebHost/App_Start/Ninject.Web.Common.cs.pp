@@ -10,6 +10,7 @@ namespace $rootnamespace$.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Web.Common.WebHost;
 
     public static class NinjectWebCommon 
     {
@@ -24,7 +25,7 @@ namespace $rootnamespace$.App_Start
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -32,7 +33,7 @@ namespace $rootnamespace$.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -60,6 +61,6 @@ namespace $rootnamespace$.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+        }
     }
 }
