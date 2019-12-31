@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninject.Web.Common", "src\Ninject.Web.Common\Ninject.Web.Common.csproj", "{1FD016A0-A938-4F81-88BE-0DED65D9A022}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninject.Web.Common.OwinHost", "src\Ninject.Web.Common.OwinHost\Ninject.Web.Common.OwinHost.csproj", "{F57C3DD1-15C0-4F76-9E92-81C4124CA47F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninject.Web.Common.Owin", "src\Ninject.Web.Common.Owin\Ninject.Web.Common.Owin.csproj", "{F57C3DD1-15C0-4F76-9E92-81C4124CA47F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninject.Web.Common.WebHost", "src\Ninject.Web.Common.WebHost\Ninject.Web.Common.WebHost.csproj", "{FDBC2893-A26E-44F1-AC57-0D901780AE08}"
 EndProject

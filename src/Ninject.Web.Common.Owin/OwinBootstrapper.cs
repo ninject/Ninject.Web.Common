@@ -19,7 +19,7 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------
 
-namespace Ninject.Web.Common.OwinHost
+namespace Ninject.Web.Common.Owin
 {
     using System;
     using System.Collections.Generic;

@@ -5,14 +5,14 @@
     <Version>0.0.0</Version>
     <Authors>Ninject Project Contributors</Authors>
     <Company>Ninject Project Contributors</Company>
-    <Product>Ninject.Web.Common.OwinHost</Product>
+    <Product>Ninject.Web.Common.Owin</Product>
     <Description>OWIN extension for Ninject.Web.Common</Description>
     <Copyright>2010-2011 bbv Software Services AG. 2011-2017 Ninject Project Contributors.</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>..\Ninject.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <PackageId>Ninject.Web.Common.OwinHost</PackageId>
+    <PackageId>Ninject.Web.Common.Owin</PackageId>
     <PackageVersion>0.0.0</PackageVersion>
     <PackageTags>IoC;DI;Ninject;Web;OWIN</PackageTags>
     <PackageProjectUrl>http://www.ninject.org/</PackageProjectUrl>
@@ -45,10 +45,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ninject.Web.Common\Ninject.Web.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Web" />
   </ItemGroup>
 
 </Project>

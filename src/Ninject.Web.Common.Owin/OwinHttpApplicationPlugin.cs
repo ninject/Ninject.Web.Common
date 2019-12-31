@@ -19,10 +19,9 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------
 
-namespace Ninject.Web.Common.OwinHost
+namespace Ninject.Web.Common.Owin
 {
     using System.Runtime.Remoting.Messaging;
-    using System.Web;
 
     using Ninject.Activation;
 
@@ -50,7 +49,7 @@ namespace Ninject.Web.Common.OwinHost
         /// <returns>The request scope.</returns>
         public object GetRequestScope(IContext context)
         {
-            return HttpContext.Current ?? CallContext.GetData(OwinBootstrapper.NinjectOwinRequestScope);
+            return CallContext.GetData(OwinBootstrapper.NinjectOwinRequestScope);
         }
 
         /// <summary>
