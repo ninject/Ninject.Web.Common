@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="OwinAppBuilderExtensions.cs" company="Ninject Project Contributors">
+// <copyright file="OwinHttpApplicationPlugin.cs" company="Ninject Project Contributors">
 //   Copyright (c) 2010-2011 bbv Software Services AG.
 //   Copyright (c) 2011-2017 Ninject Project Contributors. All rights reserved.
 //
@@ -19,39 +19,51 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------
 
-namespace Ninject.Web.Common.OwinHost
+namespace Ninject.Web.Common.Owin
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using System.Runtime.Remoting.Messaging;
 
-    using Owin;
+    using Ninject.Activation;
 
     /// <summary>
-    /// The OWIN app builder extensions.
+    /// The Owin Http Application plugin.
     /// </summary>
-    public static class OwinAppBuilderExtensions
+    public class OwinHttpApplicationPlugin : INinjectHttpApplicationPlugin
     {
         /// <summary>
-        /// The ninject OWIN bootstrapper key.
+        /// Gets or sets the <see cref="INinjectSettings"/>.
         /// </summary>
-        public const string NinjectOwinBootstrapperKey = "NinjectOwinBootstrapper";
+        public INinjectSettings Settings { get; set; }
 
         /// <summary>
-        /// Uses ninject middleware.
+        /// Disposes the instances.
         /// </summary>
-        /// <param name="app">The <see cref="IAppBuilder"/> passed in.</param>
-        /// <param name="createKernel">The kernel callback.</param>
-        /// <returns>The <see cref="IAppBuilder"/> passed out.</returns>
-        public static IAppBuilder UseNinjectMiddleware(this IAppBuilder app, Func<IKernel> createKernel)
+        public void Dispose()
         {
-            var bootstrapper = new OwinBootstrapper(createKernel);
+        }
 
-            app.Properties.Add(NinjectOwinBootstrapperKey, bootstrapper);
+        /// <summary>
+        /// Gets the owin request scope.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns>The request scope.</returns>
+        public object GetRequestScope(IContext context)
+        {
+            return CallContext.GetData(OwinBootstrapper.NinjectOwinRequestScope);
+        }
 
-            var middleware = new Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>(bootstrapper.Execute);
+        /// <summary>
+        /// Starts the instance.
+        /// </summary>
+        public void Start()
+        {
+        }
 
-            return app.Use(middleware);
+        /// <summary>
+        /// Stops the instance.
+        /// </summary>
+        public void Stop()
+        {
         }
     }
 }
