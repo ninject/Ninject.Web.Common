@@ -47,4 +47,8 @@
     <ProjectReference Include="..\Ninject.Web.Common\Ninject.Web.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
 </Project>

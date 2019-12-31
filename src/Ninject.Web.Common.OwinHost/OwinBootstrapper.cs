@@ -23,6 +23,7 @@ namespace Ninject.Web.Common.OwinHost
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.Remoting.Messaging;
     using System.Threading.Tasks;
 
     using Ninject.Modules;
@@ -78,6 +79,9 @@ namespace Ninject.Web.Common.OwinHost
                 {
                     kernel.Load(this.modules);
                 }
+
+                kernel.Components.Add<INinjectHttpApplicationPlugin, OwinHttpApplicationPlugin>();
+
                 return kernel;
             });
 
@@ -85,8 +89,16 @@ namespace Ninject.Web.Common.OwinHost
             {
                 using (var scope = new OwinRequestScope())
                 {
+                    CallContext.SetData(NinjectOwinRequestScope, scope);
                     context[NinjectOwinRequestScope] = scope;
-                    await next(context);
+                    try
+                    {
+                        await next(context);
+                    }
+                    finally
+                    {
+                        CallContext.FreeNamedDataSlot(NinjectOwinRequestScope);
+                    }
                 }
             };
         }
