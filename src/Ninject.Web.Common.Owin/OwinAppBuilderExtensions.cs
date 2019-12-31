@@ -25,7 +25,7 @@ namespace Ninject.Web.Common.Owin
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Owin;
+    using global::Owin;
 
     /// <summary>
     /// The OWIN app builder extensions.
