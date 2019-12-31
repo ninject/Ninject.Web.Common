@@ -31,7 +31,7 @@ namespace Ninject.Web.Common
     public class Bootstrapper : IBootstrapper
     {
         /// <summary>
-        /// The ninject kernel of the application
+        /// The ninject kernel of the application.
         /// </summary>
         private static IKernel kernelInstance;
 

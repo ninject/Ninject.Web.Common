@@ -25,7 +25,7 @@ namespace Ninject.Web.Common.Xml
     using Ninject.Modules;
 
     /// <summary>
-    /// Ninject module for Ninject.Web.Common.Xml
+    /// Ninject module for Ninject.Web.Common.Xml.
     /// </summary>
     public class WebCommonXmlModule : NinjectModule
     {

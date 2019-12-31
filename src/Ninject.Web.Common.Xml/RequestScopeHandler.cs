@@ -26,7 +26,7 @@ namespace Ninject.Web.Common.Xml
     using Ninject.Syntax;
 
     /// <summary>
-    /// The processor for the request scope
+    /// The processor for the request scope.
     /// </summary>
     public class RequestScopeHandler : NinjectComponent, IScopeHandler
     {
