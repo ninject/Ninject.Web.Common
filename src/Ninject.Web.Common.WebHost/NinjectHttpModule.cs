@@ -26,7 +26,7 @@ namespace Ninject.Web.Common.WebHost
     using System.Web;
 
     /// <summary>
-    /// HttpModule to add support for constructor injection to HttpModules
+    /// HttpModule to add support for constructor injection to HttpModules.
     /// </summary>
     public sealed class NinjectHttpModule : IHttpModule
     {
@@ -35,7 +35,7 @@ namespace Ninject.Web.Common.WebHost
         /// <summary>
         /// Initializes a module and prepares it to handle requests.
         /// </summary>
-        /// <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        /// <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application.</param>
         public void Init(HttpApplication context)
         {
             this.httpModules = new Bootstrapper().Kernel.GetAll<IHttpModule>().ToList();

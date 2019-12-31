@@ -32,7 +32,7 @@ namespace Ninject.Web.Common.WebHost
     public abstract class NinjectHttpApplication : HttpApplication, IHaveKernel
     {
         /// <summary>
-        /// The one per request module to release request scope at the end of the request
+        /// The one per request module to release request scope at the end of the request.
         /// </summary>
         private readonly OnePerRequestHttpModule onePerRequestHttpModule;
 

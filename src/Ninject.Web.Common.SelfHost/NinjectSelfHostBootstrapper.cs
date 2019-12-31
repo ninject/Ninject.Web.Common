@@ -26,12 +26,12 @@ namespace Ninject.Web.Common.SelfHost
     using Ninject.Web.Common;
 
     /// <summary>
-    /// Self hosting bootstrapper
+    /// Self hosting bootstrapper.
     /// </summary>
     public class NinjectSelfHostBootstrapper : IDisposable
     {
         /// <summary>
-        /// The web common default bootstrapper
+        /// The web common default bootstrapper.
         /// </summary>
         private readonly IBootstrapper bootstrapper = new Bootstrapper();
 

@@ -25,7 +25,7 @@ namespace Ninject.Web.Common
     using Ninject.Components;
 
     /// <summary>
-    /// Interface for the plugins of Ninject.Web.Common
+    /// Interface for the plugins of Ninject.Web.Common.
     /// </summary>
     public interface INinjectHttpApplicationPlugin : INinjectComponent
     {

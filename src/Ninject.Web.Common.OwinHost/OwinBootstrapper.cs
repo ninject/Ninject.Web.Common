@@ -78,6 +78,7 @@ namespace Ninject.Web.Common.OwinHost
                 {
                     kernel.Load(this.modules);
                 }
+
                 return kernel;
             });
 
