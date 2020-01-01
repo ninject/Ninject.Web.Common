@@ -45,7 +45,7 @@
 
   <ItemGroup>
     <Reference Include="System.Web" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="WebActivatorEx" Version="2.2.0" />

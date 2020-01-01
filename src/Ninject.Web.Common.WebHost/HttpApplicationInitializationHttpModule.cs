@@ -27,7 +27,7 @@ namespace Ninject.Web.Common
     using Ninject.Infrastructure.Disposal;
 
     /// <summary>
-    /// Initializes a <see cref="HttpApplication"/> instance
+    /// Initializes a <see cref="HttpApplication"/> instance.
     /// </summary>
     public class HttpApplicationInitializationHttpModule : DisposableObject, IHttpModule
     {
@@ -45,7 +45,7 @@ namespace Ninject.Web.Common
         /// <summary>
         /// Initializes a module and prepares it to handle requests.
         /// </summary>
-        /// <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        /// <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application.</param>
         public void Init(HttpApplication context)
         {
             this.lazyKernel().Inject(context);
