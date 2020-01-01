@@ -49,7 +49,7 @@ namespace Ninject.Web.Common.Owin
         /// <returns>The request scope.</returns>
         public object GetRequestScope(IContext context)
         {
-            return CallContext.GetData(OwinBootstrapper.NinjectOwinRequestScope);
+            return CallContext.LogicalGetData(OwinBootstrapper.NinjectOwinRequestScope);
         }
 
         /// <summary>

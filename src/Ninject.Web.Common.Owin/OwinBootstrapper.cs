@@ -89,7 +89,7 @@ namespace Ninject.Web.Common.Owin
             {
                 using (var scope = new OwinRequestScope())
                 {
-                    CallContext.SetData(NinjectOwinRequestScope, scope);
+                    CallContext.LogicalSetData(NinjectOwinRequestScope, scope);
                     context[NinjectOwinRequestScope] = scope;
                     try
                     {
