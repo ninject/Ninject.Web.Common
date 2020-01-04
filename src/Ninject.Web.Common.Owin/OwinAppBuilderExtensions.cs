@@ -19,13 +19,14 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------
 
-namespace Ninject.Web.Common.Owin
+namespace Owin
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using global::Owin;
+    using Ninject;
+    using Ninject.Web.Common.Owin;
 
     /// <summary>
     /// The OWIN app builder extensions.

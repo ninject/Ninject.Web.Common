@@ -17,7 +17,7 @@ namespace $rootnamespace$.App_Start
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
-        /// Starts the application
+        /// Starts the application.
         /// </summary>
         public static void Start() 
         {
