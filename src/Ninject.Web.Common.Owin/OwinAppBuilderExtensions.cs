@@ -44,7 +44,19 @@ namespace Owin
         /// <param name="app">The <see cref="IAppBuilder"/> passed in.</param>
         /// <param name="createKernel">The kernel callback.</param>
         /// <returns>The <see cref="IAppBuilder"/> passed out.</returns>
+        [Obsolete("Use UseNinject please.")]
         public static IAppBuilder UseNinjectMiddleware(this IAppBuilder app, Func<IKernel> createKernel)
+        {
+            return UseNinject(app, createKernel);
+        }
+
+        /// <summary>
+        /// Uses ninject middleware.
+        /// </summary>
+        /// <param name="app">The <see cref="IAppBuilder"/> passed in.</param>
+        /// <param name="createKernel">The kernel callback.</param>
+        /// <returns>The <see cref="IAppBuilder"/> passed out.</returns>
+        public static IAppBuilder UseNinject(this IAppBuilder app, Func<IKernel> createKernel)
         {
             var bootstrapper = new OwinBootstrapper(createKernel);
 
